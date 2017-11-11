@@ -41,7 +41,7 @@ jobs:
   deploy-job:
     docker:
       - image: circleci/python:3.6.1
-      
+
     working_directory: /tmp/my-project
     steps:
       #deploy to heroku
@@ -63,8 +63,8 @@ workflows:
     jobs:
       - build-job
       - deploy-job:
-        requires:
-          - build-job
-        filters:
-          branches:
-            only: master
+          requires:
+            - build-job
+          filters:
+            branches:
+              only: master
