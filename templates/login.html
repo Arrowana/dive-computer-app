@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Dives{% endblock %}
+
+{% block content %}
+<form method="POST">
+  {{ form.username(placeholder='Username', class='form-control') }}
+  {{ form.password(placeholder='Password', class='form-control') }}
+  {{ form.submit() }}
+  {{ form.csrf_token }}
+</form>
+{% endblock %}

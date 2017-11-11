@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Dives{% endblock %}
+
+{% block content %}
+<section>
+	<section id="dive-selection">
+	<p>{{ dive_list | length }} dive(s)</p>
+	{% for dive_records in dive_list %}
+		<div class="dive-summary {% if loop.index == 1 %}dive-selected{% endif %}" dive-id="{{ dive_records[0].dive_id }}">
+			<p>{{ dive_records | length }}'' ID: {{ dive_records[0].dive_id }}</p>
+		</div>
+	{% endfor %}
+	</section>
+
+	<section id="dive">
+		<p>Raw data</p>
+		<div class="ct-chart"></div>
+
+		<input type="radio" checked="checked">Depth</input>
+		<input type="radio">Temperature</input>
+		<input type="radio">Speed</input>
+
+	</section>
+<section>
+
+<script src="chartist-js/chartist.js"></script>
+<script src="ui.js"></script>
+{% endblock %}

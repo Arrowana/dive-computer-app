@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+	<p>Sync dives using BLE</p>
+	<button id="connect">Connect</button>
+	<button id="sync">Sync</button>
+	<p id="sync-progress-status">0 %</p>
+	<progress id="sync-progress-bar" max="100" value="10" style="width: 200px;background-color: blue;"></progress>
+<section>
+
+<script src="chrome_ble_test.js"></script>
+<script src="sync-ui.js"></script>
+{% endblock content %}
