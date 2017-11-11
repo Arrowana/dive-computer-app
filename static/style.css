@@ -1,0 +1,26 @@
+.dive-summary {
+	cursor: pointer;
+}
+
+.dive-selected {
+	border: solid 1px;
+}
+
+#dive-selection {
+	display: inline-block;
+	vertical-align: top;
+	width: 20%;
+}
+
+#dive {
+	display: inline-block;
+	width: 70%;
+}
+
+#sync-progress-bar {
+	background: grey;
+}
+
+#sync-progress-bar::-webkit-progress-value {
+  background: blue;
+}
