@@ -56,7 +56,6 @@ jobs:
           name: Deploy master to heroku
           command: |
             git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
-            heroku restart
 
 workflows:
   version: 2
