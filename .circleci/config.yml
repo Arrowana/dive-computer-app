@@ -44,6 +44,7 @@ jobs:
 
     working_directory: /tmp/my-project
     steps:
+      - checkout
       #deploy to heroku
       - run:
           name: Run setup script
