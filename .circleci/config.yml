@@ -40,13 +40,13 @@ jobs:
 
       #deploy to heroku
       - run:
-        name: Run setup script
-        command: bash .circleci/setup-heroku.sh
+          name: Run setup script
+          command: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
-        fingerprints:
-          - "9f:ea:ca:42:83:99:16:3b:5e:1b:3a:d1:af:33:ef:c9"
+          fingerprints:
+            - "9f:ea:ca:42:83:99:16:3b:5e:1b:3a:d1:af:33:ef:c9"
       - run:
-        name: Deploy master to heroku
-        command: |
+          name: Deploy master to heroku
+          command: |
             git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
             heroku restart
