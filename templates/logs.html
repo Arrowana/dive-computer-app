@@ -4,25 +4,43 @@
 
 {% block content %}
 <section>
-	<section id="dive-selection">
-	<p>{{ dive_list | length }} dive(s)</p>
-	{% for dive_records in dive_list %}
-		<div class="dive-summary {% if loop.index == 1 %}dive-selected{% endif %}" dive-id="{{ dive_records[0].dive_id }}">
-			<p>{{ dive_records | length }}'' ID: {{ dive_records[0].dive_id }}</p>
-		</div>
-	{% endfor %}
-	</section>
+  <section id="dive-selection">
+    <div id="accordion" role="tablist">
+      {% set dates = ["Sat 1/10/17", "Sun 5/10/17", "Wed 10/11/17"] %}
+      {% for date in dates %}
+      <div class="card">
+        <div class="card-header" role="tab">
+          <h5 class="mb-0">
+            <a data-toggle="collapse" href="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+              {{ date }} N dives
+            </a>
+          </h5>
+        </div>
+      </div>
+
+      <div id="collapse{{loop.index}}" class="collapse" role="tabpanel" aria-labelledby="heading{{loop.index}}" data-parent="#accordion">
+        <div class="card-body">
+          {% if loop.index == 1 %}
+          {% for dive_records in dive_list %}
+            <div class="dive-summary {% if loop.index == 1 %}dive-selected{% endif %}" dive-id="{{ dive_records[0].dive_id }}">
+              <p>{{ dive_records | length }}'' {{ dive_records | map(attribute='depth')|max|round|int }}m</p>
+            </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
 
 	<section id="dive">
-		<p>Raw data</p>
 		<div class="ct-chart"></div>
 
 		<input type="radio" checked="checked">Depth</input>
 		<input type="radio">Temperature</input>
 		<input type="radio">Speed</input>
-
 	</section>
-<section>
+</section>
 
 <script src="chartist-js/chartist.js"></script>
 <script src="ui.js"></script>

@@ -1,21 +1,6 @@
 /* Populate dive info and graphs on click */
 var diveSelectedClass = 'dive-selected';
 
-document.querySelectorAll('.dive-summary').forEach(i=>{
-	i.addEventListener('click', e=>{
-		var diveId = i.getAttribute('dive-id');
-
-		document.querySelectorAll('.dive-summary').forEach(el=>{
-			el.classList.remove(diveSelectedClass);
-		});
-		i.classList.add(diveSelectedClass);
-		console.log(diveId);
-		console.log('Yes');
-
-		get_dive(diveId);
-	});
-});
-
 function get_dive(diveId) {
 	var xhr = new XMLHttpRequest();
   fetch('dive/' + diveId)
@@ -69,5 +54,23 @@ function updateDiveGraph(diveRecords) {
 	new Chartist.Line('.ct-chart', data, options, responsiveOptions);
 }
 
-//Initial set to first dive
-get_dive(0);
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOM fully loaded and parsed");
+
+  document.querySelectorAll('.dive-summary').forEach(i=>{
+  	i.addEventListener('click', e=>{
+  		var diveId = i.getAttribute('dive-id');
+
+  		document.querySelectorAll('.dive-summary').forEach(el=>{
+  			el.classList.remove(diveSelectedClass);
+  		});
+  		i.classList.add(diveSelectedClass);
+  		console.log(diveId);
+  		console.log('Yes');
+
+  		get_dive(diveId);
+  	});
+  });
+  
+  get_dive(0);
+});
